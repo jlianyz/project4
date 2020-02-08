@@ -40,3 +40,29 @@ def login(request):
         return render(request, 'user_login.html', {
             'form':login_form
         })
+def register(request):
+    User = get_user_model()
+    if request.method == "POST":
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # check if the username and password matches
+            user = auth.authenticate(username=request.POST['username'],
+                                     password=request.POST['password1'])
+            if user:
+                # actually log the user in
+                auth.login(user=user, request=request)
+                messages.success(request, "You have registered successful")
+            else:
+                messages.error(request, "You failed to register")
+            return redirect(reverse('index'))
+        else:
+            return render(request, "register.html",{
+                'form': form
+            })
+    else:
+        register_form = UserRegistrationForm()
+        return render(request, "register.html", {
+            'form': register_form
+        })
+        
