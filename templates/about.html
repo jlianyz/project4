@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+About us
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid" id="jumbo1">
+  <div class="container"><br><br><br><br><br><br><br>
+    <h1 class="display-4">About us</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6" id="aboutleft">
+      <p>The Sweet Tooth was founded by a team of passionate and dedicated bakers who are committed in baking the most delicious cakes and pastries around. Using only the freshest ingredients we can find, you can be sure that you are served the best quality cake you can ever have.<br><br>
+      We have evolved to become one of a premium distributor and wholesaler for cakes and pastries to some well known resturants, cafes, supermart, hotels and bakery.<br><br>
+      Our online store is a leading online shop in Singapore providing cakes and gifts deliveries within Singapore. We provide competitive prices, good after sales services and on-time delivery.<br><br>
+      The Sweet Tooth provides same day delivery service seven days a week, including Sunday, within Singapore to provide a high level of customer service.</p>
+    </div>
+    <div class="col-sm-12 col-md-6" id="aboutright">
+      <h3>FAQs</h3><br>
+      <div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Do you do delivery? How much does it cost?
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        Yes, we do delivery to all parts of Singapore except for Jurong Island.<br><br>Delivery costs $15. An additional $5 is needed for delivery to Sentosa. Alternatively, you can also choose to self collect at our shop at no additional cost.
+
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          What is your cancellation policy?
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+      Once the order is confirmed, you may not cancel your order after confirmation.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Do I have to place an order in advance?
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+Yes, as our orders are baked fresh in small quantities, we do not have keep stock for immediate orders. As such it is best to place your order 3 days in advance or give us a call if you urgently need it within 3 days.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Do you cater to special requests for customers with allergies?
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+  We make egg free, nut free, dairy free, & gluten free cakes. These orders need to be placed at least 1 week in advance. We do not make vegan cakes. We can only accommodate one allergy per cake with the only exception being nut free.
+</div>
+</div></div></div>
+
+    </div>
+  </div>
+</div>
