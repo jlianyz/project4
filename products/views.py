@@ -32,3 +32,10 @@ def product_list(request):
 def search_products(request):
     product=Product.objects.filter(name__icontains=request.GET['query'])
     return render(request, "product_list.html", {'products':product})
+    
+def product_details(request, id):
+    product = get_object_or_404(Product, pk=id)
+    return render(request, 'product_detail.html', {
+        'product': product
+    })
+    
