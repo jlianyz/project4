@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+Our products
+{% endblock %}
+
+{% block content %}
+    <br><br><br>
+        <!--Dropdown list for menu items-->
+<div class="productTop">
+<div class="container">
+  <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <div class="dropdown">
+  <button class="dropbtn">Select category</button>
+  <div class="dropdown-content">
+<a class="dropdown-item" href="{% url 'products' %}">All products</a>
+            <a class="dropdown-item" href="{% url 'filter' 'Cake pops' %}">Cake pops</a>
+            <a class="dropdown-item" href="{% url 'filter' 'Chocolates' %}">Chocolates</a>
+            <a class="dropdown-item" href="{% url 'filter' 'Macarons' %}">Macaroons</a>
+            <a class="dropdown-item" href="{% url 'filter' 'Pastries' %}">Pastries</a>
+            <a class="dropdown-item" href="{% url 'filter' 'Cookies' %}">Cookies</a>
+            <a class="dropdown-item" href="{% url 'filter' 'Cupcakes' %}">Cupcakes</a>
+            <a class="dropdown-item" href="{% url 'filter' 'Tarts' %}">Tarts</a> 
+  </div>
+</div>
+</div>      
