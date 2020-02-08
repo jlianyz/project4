@@ -62,3 +62,4 @@ def filter_products(request, category):
     return render(request, "product_list.html",{
         'products': product_category
     })
+
