@@ -44,7 +44,7 @@ Our products
 <img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/300x300/center/-/quality/lightest/">
 <p class="productName">  {{product.name}}<br></p>
         <p>${{product.showPriceInDollars}}0</p>
-            <form method="post" action="{% url 'add_to_cart' product.id %}" id="mainAdd">
+            <form method="post" action="#" id="mainAdd">
             <p>Quantity: </p>
             {% csrf_token %}
             <input type="number" class="form-control text-center border mr-0" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
@@ -58,3 +58,49 @@ Our products
           </div>
           
         {% endfor %}
+
+   
+    </div>
+<div id="pages">
+{% if products.has_other_pages %}
+  <ul class="pagination">
+    {% if products.has_previous %}
+      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in products.paginator.page_range %}
+      {% if products.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if products.has_next %}
+      <li><a href="?page={{ products.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+  </div>
+{% endif %}
+{% endblock %}
+{% block footer_js %}
+<script>
+var sitePlusMinus = function() {
+		$('.js-btn-minus').on('click', function(e){
+			e.preventDefault();
+			if ( $(this).closest('.input-group').find('.form-control').val() != 0  ) {
+				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+			} else {
+				$(this).closest('.input-group').find('.form-control').val(parseInt(0));
+			}
+		});
+		$('.js-btn-plus').on('click', function(e){
+			e.preventDefault();
+			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+		});
+	};
+	sitePlusMinus();
+	</script>
+{%endblock%}
