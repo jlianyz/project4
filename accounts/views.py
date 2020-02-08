@@ -66,3 +66,33 @@ def register(request):
             'form': register_form
         })
         
+@login_required
+def update_details(request):
+    logged_in_user = MyUser.objects.all().get(pk=request.user.id)
+    if request.method=="GET":
+        update_details_form = UpdateDetailsForm(instance=logged_in_user)
+        return render(request,"update_details.html",{
+            "logged_in_user":logged_in_user,
+            "update_details_form":update_details_form
+        })
+    else:
+        account_details = UpdateDetailsForm(
+            request.POST,
+            instance=logged_in_user
+            )
+        if account_details.is_valid():
+            account_details.save()
+            messages.success(
+                request,
+                "Your user details have been successfully updated!"
+                )
+            return redirect('main')
+        else:
+            return render(
+                request,
+                "update_details.html",
+                {
+                    "account_details":account_details
+                    }
+                )
+        
