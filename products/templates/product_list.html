@@ -36,3 +36,25 @@ Our products
     </div>
 </div>
 </div>
+   <div class="container-fluid row mx-auto">
+        <!--To show the menu items obtained-->
+        {% for product in products %}
+        <div class="card col-sm-12 col-md-6 col-lg-4" id="productlist">
+<a href='{% url "details" id=product.id %}'>
+<img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/300x300/center/-/quality/lightest/">
+<p class="productName">  {{product.name}}<br></p>
+        <p>${{product.showPriceInDollars}}0</p>
+            <form method="post" action="{% url 'add_to_cart' product.id %}" id="mainAdd">
+            <p>Quantity: </p>
+            {% csrf_token %}
+            <input type="number" class="form-control text-center border mr-0" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <div class="d-flex justify-content-center" id="quantityB">
+              <button class="btn btn-link btn-sm js-btn-minus" type="button"><i class="fas fa-minus-circle"></i></button>
+        <button class="btn btn-link btn-sm js-btn-plus" type="button"><i class="fas fa-plus-circle"></i></button></button>
+        </div>
+            <br>
+          <button class="btn btn-info" type="submit" id="productButton">Add to Cart</button>
+                  </form>
+          </div>
+          
+        {% endfor %}
