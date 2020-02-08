@@ -105,12 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'accounts.MyUser' 
-
-AUTHENTICATION_BACKENDS = (
-    # Needed to login by custom User model, regardless of `allauth`
-    "django.contrib.auth.backends.ModelBackend",
-)
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -147,3 +141,9 @@ UPLOADCARE = {
     'secret': UPLOADCARE_SECRET_KEY,
 }
 
+AUTH_USER_MODEL = 'accounts.MyUser' 
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by custom User model, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+)
