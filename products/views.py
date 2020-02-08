@@ -28,3 +28,7 @@ def product_list(request):
     return render(request, 'product_list.html',{
         'products':products
     })
+    
+def search_products(request):
+    product=Product.objects.filter(name__icontains=request.GET['query'])
+    return render(request, "product_list.html", {'products':product})
