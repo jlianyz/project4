@@ -48,3 +48,15 @@ h3 {
   font-family: 'Kanit', sans-serif;
   color:purple;
 }
+@media only screen and (max-width: 768px) { 
+  .navbar-brand img{
+    display:none;
+  }
+    .carousel-item img {
+  object-fit:cover;
+    height:100vh;
+  }
+  .carousel-caption {
+  height:220px;
+  }  
+}

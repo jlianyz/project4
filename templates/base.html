@@ -19,7 +19,7 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <ul class="navbar-nav w-100 nav-justified mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{% url "about" %}">
             About us
         </a>
       </li>
@@ -30,7 +30,7 @@
     </li>
      <a class="navbar-brand" href="{% url "index" %}"><img src="{% static 'images/logo.png' %}"></a>
       <li class="nav-item">
-        <a class="nav-link" href="#>Contact</a>
+        <a class="nav-link" href="{% url "contact" %}">Contact</a>
       </li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
