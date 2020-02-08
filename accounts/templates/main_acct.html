@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+Member's area
+{% endblock %}
+
+{% block content %}
+<br><br>
+  {% if request.user.username %}
+    <p>Logged in as:</p>
+    {% endif %}
+
+   <ul>
+       {% if not user.is_authenticated %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <h1>{{request.user.username}}</h1><br>
+        <a href="{% url 'update' %}"><button type="button" class="btn btn-primary" id="logout">Edit profile details</button></a>
+ <table id="profile">
+    <tr>
+      <th>User Name :</th>
+      <td>{{ user }}</td>
+    </tr> 
+    <tr>
+        <th>Registered Email :</th>
+        <td>{{ user.email }}</td>
+    </tr> 
+    <tr>
+      <th>First Name :</th>
+      <td>{{ user.first_name }}</td>
+    </tr> 
+    <tr>
+        <th>Last Name :</th>
+        <td>{{ user.last_name }}</td>
+    </tr> 
+ </table><br>
+        <a href="{% url 'logout' %}"><button type="button" class="btn btn-warning" id="logout">Logout</button</a>
+        
+        {% endif %}
+        
+    </ul>
+{% endblock %}
