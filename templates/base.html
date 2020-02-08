@@ -38,12 +38,12 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         {% if not user.is_authenticated %}
-          <a class="dropdown-item" href="#" id="navDrop">Register</a>
-          <a class="dropdown-item" href="#" id="navDrop">Login</a>
+          <a class="dropdown-item" href="{% url "register" %}" id="navDrop">Register</a>
+          <a class="dropdown-item" href="{% url "login" %}" id="navDrop">Login</a>
         {% endif %}
         {% if user.is_authenticated %}
-          <a class="dropdown-item" href="#" id="navDrop">Update profile</a>
-          <a class="dropdown-item" href="#" id="navDrop">Logout</a>
+          <a class="dropdown-item" href="{% url "update" %}" id="navDrop">Update profile</a>
+          <a class="dropdown-item" href="{% url "logout" %}" id="navDrop">Logout</a>
         </div>
          {% endif %}
       </li>
