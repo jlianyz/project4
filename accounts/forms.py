@@ -77,5 +77,35 @@ class UserRegistrationForm(UserCreationForm):
             
             Submit('submit', 'Register')
           )
-          
+
+class UpdateDetailsForm(UserRegistrationForm):
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].label = 'First name'
+        self.fields['last_name'].label = 'Last name'
+        self.fields['username'].label = 'Username'
+        self.fields['email'].label = 'Email'
+        self.fields['password1'].label = 'Password'
+        self.fields['password2'].label = 'Confirm Password'
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('username', css_class='form-group col-md-6 mb-0'),
+                Column('email', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('first_name', css_class='form-group col-md-6 mb-0'),
+                Column('last_name', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('password1', css_class='form-group col-md-6 mb-0'),
+                Column('password2', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+
+            Submit('submit', 'Update details')
+        )
           
