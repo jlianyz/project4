@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'products',
+    'pyuploadcare.dj',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,14 @@ STATICFILES_DIRS = [
 ]
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+
+UPLOADCARE_PUBLIC_KEY = os.environ['UPLOADCARE_PUBLIC_KEY']
+UPLOADCARE_SECRET_KEY = os.environ['UPLOADCARE_SECRET_KEY']
+
+UPLOADCARE = {
+    'pub_key': UPLOADCARE_PUBLIC_KEY,
+    'secret': UPLOADCARE_SECRET_KEY,
+}
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
