@@ -252,3 +252,20 @@ h3 {
   color:black;
   font-family:'Alata', sans-serif;
 }
+#registerForm, #loginForm, #updateForm, #payment-form {
+  font-family:'Alata', sans-serif;
+}
+#profile {
+  font-family:'Alata', sans-serif;
+}
+#profile th {
+  color: rgb(255,20,147);
+  font-weight:bolder;
+}
+#profile td {
+  padding-left:10px;
+}
+#pages {
+  color:red !important;
+  text-align:center !important;
+}
