@@ -38,4 +38,27 @@ def product_details(request, id):
     return render(request, 'product_detail.html', {
         'product': product
     })
+
+def filter_products(request, category):
     
+    if category == "Cake pops":
+        product_category = Product.objects.filter(category='Cake pops')
+    elif category == "Chocolates":
+        product_category = Product.objects.filter(category='Chocolates')
+    elif category == "Macarons":
+        product_category = Product.objects.filter(category='Macarons')
+    elif category == "Pastries":
+        product_category = Product.objects.filter(category='Pastries')
+    elif category == "Cookies":
+        product_category = Product.objects.filter(category='Cookies')
+    elif category == "Brownies":
+        product_category = Product.objects.filter(category='Brownies')
+    elif category == "Cupcakes":
+        product_category = Product.objects.filter(category='Cupcakes')
+    elif category == "Tarts":
+        product_category = Product.objects.filter(category='Tarts')
+
+        
+    return render(request, "product_list.html",{
+        'products': product_category
+    })
