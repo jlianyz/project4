@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0iws4v4!+n3#wnf6c1y1dmh2t&5#oq9=ddn$v72eh2&49j49u6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'products',
+    'pyuploadcare.dj',
     'crispy_forms',
 ]
 
@@ -132,3 +133,12 @@ STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+UPLOADCARE_PUBLIC_KEY = os.environ['UPLOADCARE_PUBLIC_KEY']
+UPLOADCARE_SECRET_KEY = os.environ['UPLOADCARE_SECRET_KEY']
+
+UPLOADCARE = {
+    'pub_key': UPLOADCARE_PUBLIC_KEY,
+    'secret': UPLOADCARE_SECRET_KEY,
+}
+
