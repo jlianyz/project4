@@ -35,7 +35,7 @@ def search_products(request):
     
 def product_details(request, id):
     product = get_object_or_404(Product, pk=id)
-    return render(request, 'product_detail.html', {
+    return render(request, 'product_details.html', {
         'product': product
     })
 

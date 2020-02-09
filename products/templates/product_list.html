@@ -44,7 +44,7 @@ Our products
 <img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/300x300/center/-/quality/lightest/">
 <p class="productName">  {{product.name}}<br></p>
         <p>${{product.showPriceInDollars}}0</p>
-            <form method="post" action='{% url "details" id=product.id %}' id="mainAdd">
+            <form method="post" action='{% url "add_to_cart" product.id %}' id="mainAdd">
             <p>Quantity: </p>
             {% csrf_token %}
             <input type="number" class="form-control text-center border mr-0" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
