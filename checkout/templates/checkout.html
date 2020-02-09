@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}
+Checkout
+{% endblock%}
+
+{% block page_heading %}
+This is the main products page
+{% endblock %}
+
+{% block content %}
+    <br><br><br>
+    <table>
+        <th>
+            Item
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        {%for i in cart_items %}
+        <tr>
+            <td>
+                {{i.product.name}}
+            </td>
+            <td>
+                {{i.quantity }}
+            </td>
+            <td>
+                 ${{i.product.showPriceInDollars}}0 
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+<p>
+    Subtotal cost: ${{subtotal_cost}}0<br>
+    Delivery fee: ${{deliver_fee}}0<br>
+    Total cost: ${{total_cost}}0<br>
+</p>
+
+<a class='btn btn-primary mb-3 mt-3' href="{%url 'charge' %}">Proceed to Payment</a>
+{% endblock %}
