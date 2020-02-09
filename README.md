@@ -132,7 +132,7 @@ This site is tested to be responsive on the following devices:
 * Edge
 * IE
 
-Manual checs include:
+Manual checks include:
 
 ##### Accounts app 
 
@@ -175,7 +175,36 @@ Manual checs include:
 ***
 
 ### Deployment
+Heroku deployment - this is done as a last step to ensure that all installed packages are included in the requirements.txt file 
+1.	Sign up for a [Heroku](https://www.heroku.com/) account
+2.	Install Heroku using bash: `sudo snap install heroku --classic`
+3.	Install dependencies (gunicorn, Pillow, psycopg2, whitenoise, dj_database_url)
+4.	Add Whitenoise to middleware inside settings.py
+5.	Log into heroku account with `heroku login -i`
+6.	Create a new app in bash: `heroku create <app_name>`
+7.	Copy over uploadcare and Stripe key details from bashrc into Heroku Config vars
+8.	Create a Procfile and add the following line: `web: gunicorn <PROJECT_FOLDER>.wsgi:application`
+9.	Add heroku app url to allowed hosts in settings.py, and also change the static directory to STATIC_ROOT
+10.	Create the requirements.txt file using bash: `pip3 freeze --local > requirements.txt`
+11.	Commit and push the project to heroku
+* `git add .`
+* `git commit -m "commit name"`
+* `git push heroku master`
+12. Set up Postgre database with `heroku addons:create heroku-postgresql`
+13. Get the updated databse url by typing `heroku config`, and copy it into settings.py and Heroku's Config vars
+14. Migrate database and create a superuser to make changes to it
 
+
+I deployed the site to Github with the following steps:
+1. Go to this repository's github [link](https://github.com/jlianyz/project4)
+2. Click on settings --> Github Pages
+3. Select "none" for the Source and then select "master branch"
+
+To deploy the page locally:
+1.	Go to the github [link](https://github.com/jlianyz/project4)
+2.	Click on the Clone/download button and copy the URL 
+3.	Set up and install your own Stripe and uploadcare accounts, and also install crispy forms
+5.	To run the application locally, type `python3 manage.py runserver 8080` in bash
 ***
 ### Credits
 **Images**
