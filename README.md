@@ -133,12 +133,16 @@ This site is tested to be responsive on the following devices:
 * IE
 
 Manual checs include:
-Testcase | Test description | Outcome
---- | --- | ---
-* Registered user is able to log in | If username and password is correct, user is logged in and appropriate text is returned
-* If username and/or password is wrong, user is unable to log in and error message shows
-* If username is not registered, user is unable to log in and error message shows | **Pass**
-1 | 2 | 3
+
+##### Accounts app 
+
+| Test case                                                                                          | Test description                                                                                                                                                                                                                                                                                                                                                                                                     | Outcome |
+|----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| Registered user is able to log in                                                                  | If username and password is correct, user is logged in and appropriate text is returned<br><br>If username and/or password is wrong, user is unable to log in and error message shows<br><br>If username is not registered, user is unable to log in and error message shows                                                                                                                                         | Pass    |
+| User is able to register                                                                           | When all required fields are filled in and passwords match, user is able to register and is redirected to appropriate page<br><br>When one or more required fields are missing, error message shows and user is unable to submit form<br><br>When username is taken, user is prompted to choose another name<br><br>When user’s chosen passwords do not match, error message shows and user is unable to submit form | Pass    |
+| Logged in user is able to log out                                                                  | When user clicks on log out button, user gets logged out<br><br>Log out option in dropdown navlink only shows for logged in user                                                                                                                                                                                                                                                                                     | Pass    |
+| Logged in user is able to update details                                                           | When user clicks on update profile button, form with account details shows, with the correct user details displayed<br><br>User is able to make changes and submit the update details form<br><br>Update details option in dropdown navlink only shows for logged in user<br><br>After user updates details, the updated details are reflected                                                                       | Pass    |
+| Logged in user is able to view account details on main profile page, with correct messages showing | All the fields in the profile page are correct                                                                                                                                                                                                                                                                                                                                                                       | Pass    |
 ***
 
 ### Deployment
