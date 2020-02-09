@@ -18,3 +18,32 @@ class Charge(models.Model):
 
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
+
+class Transaction(models.Model):
+    
+    status_options = [
+        ('pending', "Pending"),
+        ('approved', "Approved"),
+        ('rejected', "Rejected"),
+        ('shipping', "Shipping"),
+        ('delivered', "Delivered"),
+        ('lost', "Lost")
+        
+    ]
+    
+    charge = models.ForeignKey('Charge',on_delete=models.CASCADE,null=True)
+    status = models.CharField(blank=False,choices=status_options,max_length=50)
+    date = models.DateField()
+    owner= models.ForeignKey("accounts.MyUser", on_delete=models.SET_NULL,null=True)
+    
+    def subtotal_cost(self):
+        return '{0:.2f}'.format(sum(item.cost() for item in self.items.all()))
+
+    def delivery_fee(self):
+        if Decimal(self.subtotal_cost()) > Decimal(25.00):
+            return '{0:.2f}'.format(0)
+        else:
+            return '{0:.2f}'.format(4.90)
+
+    def total_cost(self):
+        return '{0:.2f}'.format(Decimal(self.subtotal_cost()) + Decimal(self.delivery_fee()))
