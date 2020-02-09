@@ -47,3 +47,13 @@ class Transaction(models.Model):
 
     def total_cost(self):
         return '{0:.2f}'.format(Decimal(self.subtotal_cost()) + Decimal(self.delivery_fee()))
+
+class LineItem(models.Model):
+    product = models.ForeignKey('products.product', null=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255,blank=False)
+    price = models.IntegerField(blank=False)
+    transaction = models.ForeignKey('Transaction',on_delete= models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    
+    def cost(self):
+        return self.price * self.quantity
