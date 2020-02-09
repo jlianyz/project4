@@ -18,15 +18,10 @@ def calculate_cart_cost(request):
     return amount
 
 def checkout(request):
-    all_cart_products = CartProduct.objects.filter(owner=request.user)
-    for cart_product in all_cart_products:
-        subtotal_cost = calculate_cart_cost(request)
-        delivery_fee = cart_product.delivery_fee
-        total_cost = cart_product.subtotal_cost + cart_product.delivery_fee
-    
+    total_cost = calculate_cart_cost(request)
+   
+        
     return render(request, 'checkout.html', {
-        'subtotal_cost': subtotal_cost,
-        'delivery_fee': delivery_fee,
         'total_cost':total_cost/100
     })
 

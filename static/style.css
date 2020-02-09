@@ -179,6 +179,9 @@ h3 {
   font-size:1.5em;
   color:black;
 }
+#mainAdd input {
+  width:100px;
+}
 .dropbtn {
   background-color:rgb(255,192,203, 0.5);
   color: purple;
