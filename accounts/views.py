@@ -8,13 +8,11 @@ from .forms import UserLoginForm, UserRegistrationForm, UpdateDetailsForm
 from django.template.context_processors import csrf
 
 # Create your views here.
-def main_account(request):
-    return render(request, 'main_acct.html')
-    
+
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have successfully been logged out")
-    return redirect(reverse('main'))
+    return redirect(reverse('index'))
 
 def login(request):
     """Returns the login page"""
@@ -28,7 +26,7 @@ def login(request):
             if user:
                 # log in the user
                 auth.login(user=user, request=request)
-                return redirect(reverse('main'))
+                return redirect(reverse('products'))
             else:
                 login_form.add_error(None, "Invalid username or password")
                 return render(request, 'user_login.html', {
@@ -69,30 +67,19 @@ def register(request):
 @login_required
 def update_details(request):
     logged_in_user = MyUser.objects.all().get(pk=request.user.id)
-    if request.method=="GET":
-        update_details_form = UpdateDetailsForm(instance=logged_in_user)
-        return render(request,"update_details.html",{
-            "logged_in_user":logged_in_user,
-            "update_details_form":update_details_form
-        })
+    
+    if request.method == "POST":
+        # for update
+        update_details_form = UpdateDetailsForm(request.POST, instance=logged_in_user)
+        if update_details_form.is_valid():
+            update_details_form.save()
+            messages.success(request, "Your profile has been updated! Please log in again")
+  
     else:
-        account_details = UpdateDetailsForm(
-            request.POST,
-            instance=logged_in_user
-            )
-        if account_details.is_valid():
-            account_details.save()
-            messages.success(
-                request,
-                "Your user details have been successfully updated!"
-                )
-            return redirect('main')
-        else:
-            return render(
-                request,
-                "update_details.html",
-                {
-                    "account_details":account_details
-                    }
-                )
-        
+        update_details_form = UpdateDetailsForm(instance=logged_in_user)
+    
+    return render(request, 'update_details.html',{
+        'update_details_form':update_details_form
+    })
+    
+    
