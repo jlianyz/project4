@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, reverse, redirect
+from django.shortcuts import render, HttpResponse, reverse, redirect, get_object_or_404
 from .forms import OrderForm, PaymentForm
 from django.conf import settings
 from django.contrib import messages
@@ -8,21 +8,22 @@ from .models import Charge, Transaction, LineItem
 from products.models import Product
 import stripe
 
-
+def success(request):
+    return render(request, 'success.html')
+    
 def calculate_cart_cost(request):
-    all_cart_products = CartProduct.objects.filter(owner=request.user)
+    cart = request.session.get('cart', {})
     amount = 0
-    for cart_product in all_cart_products:
-        amount += cart_product.product.price * cart_product.quantity
-        
+    for id, quantity in cart.items():
+        product = get_object_or_404(Product, pk=id)
+        amount += quantity * product.price
     return amount
 
 def checkout(request):
+    all_cart_products = CartProduct.objects.filter(owner=request.user)
     total_cost = calculate_cart_cost(request)
-   
-        
     return render(request, 'checkout.html', {
-        'total_cost':total_cost/100
+    'total_cost':total_cost/100
     })
 
 def charge(request):
@@ -52,7 +53,7 @@ def charge(request):
         return render(request, 'charge.html', {
             'order_form' : order_form,
             'payment_form' : payment_form,
-            'amount' : amount,
+            'amount' : amount/100,
             'transaction' : transaction,
             'publishable': settings.STRIPE_PUBLISHABLE_KEY
         })
@@ -99,8 +100,8 @@ def charge(request):
                     
                     cart_products = CartProduct.objects.filter(owner=request.user).delete()
                     
-                    
-                    return render(request, 'success.html')
+                
+                    return redirect(reverse('success'))
                 else:
                     messages.error(request, "Your card has been declined")
             except stripe.error.CardError:
