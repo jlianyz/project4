@@ -108,4 +108,15 @@ class UpdateDetailsForm(UserRegistrationForm):
 
             Submit('submit', 'Update details')
         )
-          
+      
+    def clean_email(self):
+        User = get_user_model()
+        email = self.cleaned_data.get('email') #1
+        username = self.cleaned_data.get('username')
+        #2 check if the email is unique, using the Django ORM
+        user_with_that_email = User.objects.filter(email=email)
+        print(user_with_that_email)
+        print(self.instance)
+        if user_with_that_email[0].id != self.instance.id:
+            raise forms.ValidationError(u'Email address must be unique')
+        return email
