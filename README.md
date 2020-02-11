@@ -85,14 +85,12 @@ The project consists of an ecommerce site for an online pastry shop called The S
 * Fixed attachment baking related images are shown in section headers for static pages, while still having the text clearly visible as opacity of background image is reduced
 * Information is presented in 3-column rows. Pagination is used to ensure that pages are not too long. Sufficient margins are added between columns to keep layout clean and neat
 * Landing page images are shown in a carousel, with the option for users to click to speed up the rate at which images change.
-* A modal is added on the landing page as a call to action, which users can easily close either by click on the “x” or outside of the modal. 
 
 
 #### Mobile version
 * Single columns so that page is not overly cluttered
 * Navbar is mobile responsive
 * For section headers, the background is a color gradient instead of an image so that the page loads quicker. It is also difficult to find a suitable background image for jumbotrons this small.
-* Modal is removed as it takes too much space when clicked
 
 
 ### Technologies used
@@ -172,6 +170,9 @@ Manual checks include:
 | When individual product card is clicked, user goes to the product details page | Product details are showing correctly with bigger image on the left, product price, description and tag on the right with buttons to add to cart and go back to product list page<br><br>When user clicks to add quantity, correct quantity is added to cart | Pass    |
 | User is able to search for product                                             | User can type any part of the product name and the search still works<br><br>User is able to reset search                                                                                                                                                    | Pass    |
 | User is able to filter product by category                                     | Dropdown menu works<br><br>Dropdown links work<br><br>Correct category is showing for correct link<br><br>On hover, the dropdown button changes color                                                                                                        | Pass    |
+
+Automated testing includes:
+
 ***
 
 ### Deployment
@@ -225,4 +226,4 @@ I adapted the code from [our teaching assistant's github](https://github.com/Cod
 
 **Logo and favicon generator**
 
-I generated the favicon using [Hatchful](https://hatchful.shopify.com/)
+I generated the favicon and logo using [Hatchful](https://hatchful.shopify.com/)

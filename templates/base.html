@@ -23,6 +23,9 @@
             About us
         </a>
       </li>
+            <li class="nav-item">
+        <a class="nav-link" href="{% url "bakers" %}">Our bakers</a>
+      </li>
       <li class="nav-item">
        <a class="nav-link" href={% url "products" %}>
           Shop
@@ -61,11 +64,13 @@
           </div>
         {% endif %}
       </div>  
+    </div>
    <h1>{% block page_heading %}{% endblock %}</h1>
    <div>
        {% block content %}{% endblock %}
    </div>
- <div class="container" id="footer">
+ <div id="footer">
+ <div class="container">
    <div class="row">
       <div class="col-sm-12 col-md-6">
         <p>Stay connected with us!</p>
@@ -81,6 +86,7 @@
       <input type="email" id="subscribe" placeholder="Email address">
       <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
       </div>
+   </div>
    </div>
 </div>
 <!--bootstrap js-->

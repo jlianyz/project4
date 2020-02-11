@@ -7,7 +7,7 @@ Home
 <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active" data-interval="10000">
-      <img src="{% static 'images/image1.jpg' %}" class="d-block w-100">
+      <img src="{% static 'images/image1.jpg' %}" class="img-fluid w-100 p-0">
       <div class="carousel-caption">
     <h1>Satisfy your sweet tooth with us!</h1><br>
     <a href="#"><button id="cover">Shop now</button></a>
@@ -59,44 +59,45 @@ Home
 <p>Our recipes are meticulously taste-tested and tailored to local palates, meaning that they are lower in sugar, moist and tender. We also offer a range of healthier cake options for those with special dietary requirements - as purveyors of cake, we strive to offer something delicious for everyone.</p>
   <div class="row">
 <div class="col-sm-12 col-md-6">
-  <a class="dropdown-item" href="#">
+  <a class="dropdown-item" href="{% url 'filter' 'Tarts' %}">
   <img src="{% static 'images/tarts.png' %}" id="front" class="img-fluid">
   </a>
 </div>
 <div class="col-sm-12 col-md-6">
-  <a class="dropdown-item" href="#">
+  <a class="dropdown-item" href="{% url 'filter' 'Cake pops' %}">
   <img src="{% static 'images/cakepops.png' %}" id="front" class="img-fluid">
   </a>
 </div>
 </div><br>
 <div class="row">
 <div class="col-sm-12 col-md-6">
-  <a class="dropdown-item" href="#">
+  <a class="dropdown-item" href="{% url 'filter' 'Cookies' %}">
   <img src="{% static 'images/cookies.png' %}" id="front" class="img-fluid">
   </a>
 </div>
 <div class="col-sm-12 col-md-6">
-  <a class="dropdown-item" href="#">
+  <a class="dropdown-item" href="{% url 'filter' 'Pastries' %}">
   <img src="{% static 'images/pastries.png' %}" id="front" class="img-fluid">
   </a>
 </div>
 </div><br>
 <div class="row">
 <div class="col-sm-12 col-md-6">
-  <a class="dropdown-item" href="#">
+  <a class="dropdown-item" href="{% url 'filter' 'Chocolates' %}">
   <img src="{% static 'images/chocolates.png' %}" id="front" class="img-fluid">
   </a>
 </div>
 <div class="col-sm-12 col-md-6">
-  <a class="dropdown-item" href="#">
+  <a class="dropdown-item" href="{% url 'filter' 'Macarons' %}">
   <img src="{% static 'images/macarons.png' %}" id="front" class="img-fluid">
   </a>
 </div>
 </div><br>
 <div class="row">
 <div class="col-sm-12 col-md-6">
-  <a class="dropdown-item" href="#">
+  <a class="dropdown-item" href="{% url 'filter' 'Cupcakes' %}">
   <img src="{% static 'images/cupcakes.jpg' %}" id="front" class="img-fluid">
+  </a>
 </div>
   </div>
   </div>

@@ -25,7 +25,7 @@ Our products
   </div>
 </div>
 </div>      
-
+<div class="desktop"><br><br></div>
     <!--Search field to be shown if authenticated-->
     <div class="col-sm-12 col-md-4" id="searchbar">
             <form action="{% url 'search' %}" method="GET">
@@ -65,7 +65,7 @@ Our products
 {% if products.has_other_pages %}
   <ul class="pagination">
     {% if products.has_previous %}
-      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+      <li><a href="?page={{ products.previous_page_number }}">&laquo;</a></li>
     {% else %}
       <li class="disabled"><span>&laquo;</span></li>
     {% endif %}
@@ -82,7 +82,6 @@ Our products
       <li class="disabled"><span>&raquo;</span></li>
     {% endif %}
   </ul>
-  </div>
 {% endif %}
 {% endblock %}
 {% block footer_js %}

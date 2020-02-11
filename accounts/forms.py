@@ -118,5 +118,5 @@ class UpdateDetailsForm(UserRegistrationForm):
         print(user_with_that_email)
         print(self.instance)
         if user_with_that_email[0].id != self.instance.id:
-            raise forms.ValidationError(u'Email address must be unique')
+            raise forms.ValidationError('Email address must be unique')
         return email
