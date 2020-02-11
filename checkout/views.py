@@ -17,13 +17,16 @@ def calculate_cart_cost(request):
     for id, quantity in cart.items():
         product = get_object_or_404(Product, pk=id)
         amount += quantity * product.price
+        print(amount)
+        
     return amount
 
 def checkout(request):
     all_cart_products = CartProduct.objects.filter(owner=request.user)
+    print (len(all_cart_products))
     total_cost = calculate_cart_cost(request)
     return render(request, 'checkout.html', {
-    'total_cost':total_cost/100
+        'total_cost':total_cost/100
     })
 
 def charge(request):
@@ -53,7 +56,7 @@ def charge(request):
         return render(request, 'charge.html', {
             'order_form' : order_form,
             'payment_form' : payment_form,
-            'amount' : amount/100,
+            'amount' : amount,
             'transaction' : transaction,
             'publishable': settings.STRIPE_PUBLISHABLE_KEY
         })
@@ -75,7 +78,7 @@ def charge(request):
         if order_form.is_valid() and payment_form.is_valid():
             try:
                 customer = stripe.Charge.create(
-                    amount= int(request.POST['amount'])*100,
+                    amount= int(request.POST['amount']),
                     currency='usd',
                     description='Payment',
                     card=stripeToken
@@ -93,14 +96,7 @@ def charge(request):
                     transaction.save()
                     
                     #update stock quantity
-                    line_items = LineItem.objects.filter(transaction_id=transaction.id)
-                    for each_line_item in line_items:
-                        each_line_item.product.quantity -= 1
-                        each_line_item.product.save()
-                    
-                    cart_products = CartProduct.objects.filter(owner=request.user).delete()
-                    
-                
+                    del request.session['cart']
                     return redirect(reverse('success'))
                 else:
                     messages.error(request, "Your card has been declined")

@@ -4,12 +4,11 @@
 Checkout
 {% endblock%}
 
-{% block page_heading %}
-This is the main products page
-{% endblock %}
-
 {% block content %}
-    <br><br><br>
+    <br><br>
+    <h1>Confirm your purchases</h1>
+    <br>
+    <div>
     <table>
         <th>
             Item
@@ -33,13 +32,18 @@ This is the main products page
             </td>
         </tr>
         {% endfor %}
+        <tr class="borderTop">
+            <th>
+                Total cost:
+            </th>
+            <td>
+            </td>
+            <td>
+                ${{total_cost}}0
+            </td>
+        </tr>
     </table>
-    
-<p>
-    Subtotal cost: ${{subtotal_cost}}0<br>
-    Delivery fee: ${{deliver_fee}}0<br>
-    Total cost: ${{total_cost}}0<br>
-</p>
-
-<a class='btn btn-primary mb-3 mt-3' href="{%url 'charge' %}" id="productButton">Proceed to Payment</a>
+    </div>
+<br>
+<a class='btn btn-warning mb-3 mt-3' href="{%url 'charge' %}" id="productButton">Proceed to Payment</a>
 {% endblock %}
