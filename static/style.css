@@ -48,7 +48,7 @@ p,td {
   border-top:1pt solid black;
 }
 table {
-  margin-left:20px;;
+  margin-left:20px;
 }
 h3 {
   font-family: 'Kanit', sans-serif;
@@ -102,6 +102,9 @@ h3 {
   #jumbo1, #jumbo2, #jumbo3 {
     height:250px;
   } 
+  p, h3 {
+    padding:0px 10px;
+  }
   .mobile {
     display:none;
   }
