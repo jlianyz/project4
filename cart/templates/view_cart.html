@@ -33,11 +33,18 @@ Your cart
 </div>
         <a class='btn btn-warning mb-3 mt-3' href=" {%url 'checkout' %}" id="paymentButton">Proceed to Payment</a>
          {% else %}
-          <p>No items</p>
-
+         <div class="container">
+             <div class="row">
+                 <div class="col-sm-12 col-md-6">
+                     <img src="{% static 'images/success.png' %}" class="img-fluid">
+                 </div>
+                 <div class="col-sm-12 col-md-4 offset-md-2">
+                     <p>No items</p>
           <a href="{% url 'products' %}" class="btn btn-info" id="noItems">Satisfy your sweet tooth with us!</a>
-        </div>
-      </div>
+                 </div>
+             </div>
+         </div>
+
       {% endif %}
       {% else %}
       <div class="container">
@@ -60,15 +67,15 @@ Your cart
 var sitePlusMinus = function() {
 		$('.js-btn-minus').on('click', function(e){
 			e.preventDefault();
-			if ( $(this).closest('.input-group').find('.form-control').val() != 0  ) {
-				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+			if ( $(this).closest('#mainAdd').find('.form-control').val() != 0  ) {
+				$(this).closest('#mainAdd').find('.form-control').val(parseInt($(this).closest('#mainAdd').find('.form-control').val()) - 1);
 			} else {
-				$(this).closest('.input-group').find('.form-control').val(parseInt(0));
+				$(this).closest('#mainAdd').find('.form-control').val(parseInt(0));
 			}
 		});
 		$('.js-btn-plus').on('click', function(e){
 			e.preventDefault();
-			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+			$(this).closest('#mainAdd').find('.form-control').val(parseInt($(this).closest('#mainAdd').find('.form-control').val()) + 1);
 		});
 	};
 	sitePlusMinus();
