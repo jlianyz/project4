@@ -25,7 +25,7 @@ SECRET_KEY = '0iws4v4!+n3#wnf6c1y1dmh2t&5#oq9=ddn$v72eh2&49j49u6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["jlyzproject4.herokuapp.com/", '*']
 
 
 # Application definition
@@ -125,9 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-     os.path.join(BASE_DIR, "static")
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
