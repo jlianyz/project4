@@ -4,14 +4,13 @@
 {% block page_title %}
 Registration page
 {% endblock%}
-
 {% block content %}
 <br><br><br>
 <div class="csrfForm">
-<p>If you already have an account, you can <a href="{% url 'login' %}">sign in </a></p>
-    <form method='POST' action="" enctype="multipart/form-data" id="registerForm">
-         {% csrf_token %}
-         {% crispy form %}
-    </form>
-    </div>
+  <p>If you already have an account, you can <a href="{% url 'login' %}">sign in </a></p>
+  <form method='POST' action="" enctype="multipart/form-data" id="registerForm">
+    {% csrf_token %}
+    {% crispy form %}
+  </form>
+</div>
 {% endblock %}

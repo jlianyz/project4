@@ -3,47 +3,46 @@
 {% block page_title %}
 Checkout
 {% endblock%}
-
 {% block content %}
-    <br><br>
-    <h1>Confirm your purchases</h1>
-    <br>
-    <div>
-    <table>
-        <th>
-            Item
-        </th>
-        <th>
-            Quantity
-        </th>
-        <th>
-            Price
-        </th>
-        {%for i in cart_items %}
-        <tr>
-            <td>
-                {{i.product.name}}
-            </td>
-            <td>
-                {{i.quantity }}
-            </td>
-            <td>
-                 ${{i.product.showPriceInDollars}}0 
-            </td>
-        </tr>
-        {% endfor %}
-        <tr class="borderTop">
-            <th>
-                Total cost:
-            </th>
-            <td>
-            </td>
-            <td>
-                ${{total_cost}}0
-            </td>
-        </tr>
-    </table>
-    </div>
+<br><br>
+<h1>Confirm your purchases</h1>
+<br>
+<div>
+  <table>
+    <th>
+      Item
+    </th>
+    <th>
+      Quantity
+    </th>
+    <th>
+      Price
+    </th>
+    {%for i in cart_items %}
+    <tr>
+      <td>
+        {{i.product.name}}
+      </td>
+      <td>
+        {{i.quantity }}
+      </td>
+      <td>
+        ${{i.product.showPriceInDollars}}0 
+      </td>
+    </tr>
+    {% endfor %}
+    <tr class="borderTop">
+      <th>
+        Total cost:
+      </th>
+      <td>
+      </td>
+      <td>
+        ${{total_cost}}0
+      </td>
+    </tr>
+  </table>
+</div>
 <br>
 <a class='btn btn-warning mb-3 mt-3' href="{%url 'charge' %}" id="productButton">Proceed to Payment</a>
 {% endblock %}

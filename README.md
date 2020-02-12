@@ -6,20 +6,19 @@ The project consists of an ecommerce site for an online pastry shop called The S
 **1. About us page**
   * Shop background
   * Shop FAQs
-  * Bakers info
-
+  
+**1. Bakers page**
+  * Bakers info and photo on flip card
   
 **2. Contact us page**
   * Feedback form
   * Location and delivery hours
 
-  
 **3. Product list page**
   * Search bar
   * Dropdown filter to search by category
   * Links to individual products which contain more details with options to add product to cart
 
-  
 **4. Member page**
   * Registration and log in options for new/existing members
   * Once logged in, able to view and update account details, and logout
@@ -106,7 +105,7 @@ The project consists of an ecommerce site for an online pastry shop called The S
 * Gunicorn to deploy the project to Heroku
 * [Stripe](https://stripe.com/en-sg) API to process the payment
 * [Heroku](https://dashboard.heroku.com/login) as a host for the project
-* Sqlite3 as the database
+* Postgres as the database
 
 ***
 
@@ -172,6 +171,8 @@ Manual checks include:
 | User is able to filter product by category                                     | Dropdown menu works<br><br>Dropdown links work<br><br>Correct category is showing for correct link<br><br>On hover, the dropdown button changes color                                                                                                        | Pass    |
 
 Automated testing includes:
+* [Auto Pep 8](https://pypi.org/project/autopep8/) to ensure Python formatting is correct
+* [HTML and CSS formatter](https://codebeautify.org/htmlviewer/) to ensure that HTML and CSS formatting is correct
 
 ***
 

@@ -3,18 +3,17 @@
 {% block page_title %}
 Our products
 {% endblock %}
-
 {% block content %}
-    <br><br><br>
-        <!--Dropdown list for menu items-->
+<br><br><br>
+<!--Dropdown list for menu items-->
 <div class="productTop">
-<div class="container">
-  <div class="row">
+  <div class="container">
+    <div class="row">
       <div class="col-sm-12 col-md-8">
         <div class="dropdown">
-  <button class="dropbtn">Select category</button>
-  <div class="dropdown-content">
-<a class="dropdown-item" href="{% url 'products' %}">All products</a>
+          <button class="dropbtn">Select category</button>
+          <div class="dropdown-content">
+            <a class="dropdown-item" href="{% url 'products' %}">All products</a>
             <a class="dropdown-item" href="{% url 'filter' 'Cake pops' %}">Cake pops</a>
             <a class="dropdown-item" href="{% url 'filter' 'Chocolates' %}">Chocolates</a>
             <a class="dropdown-item" href="{% url 'filter' 'Macarons' %}">Macaroons</a>
@@ -22,81 +21,82 @@ Our products
             <a class="dropdown-item" href="{% url 'filter' 'Cookies' %}">Cookies</a>
             <a class="dropdown-item" href="{% url 'filter' 'Cupcakes' %}">Cupcakes</a>
             <a class="dropdown-item" href="{% url 'filter' 'Tarts' %}">Tarts</a> 
-  </div>
-</div>
-</div>      
-<div class="desktop"><br><br></div>
-    <!--Search field to be shown if authenticated-->
-    <div class="col-sm-12 col-md-4" id="searchbar">
-            <form action="{% url 'search' %}" method="GET">
-                <input type="text" , name="query" , placeholder="Search products">
-                <button type="submit">Search</button>
-            </form>
+          </div>
         </div>
+      </div>
+      <div class="desktop"><br><br></div>
+      <!--Search field to be shown if authenticated-->
+      <div class="col-sm-12 col-md-4" id="searchbar">
+        <form action="{% url 'search' %}" method="GET">
+          <input type="text" , name="query" , placeholder="Search products">
+          <button type="submit">Search</button>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 </div>
 <!--paginator-->
 {% if products.has_other_pages %}
-  <ul class="pagination" id="pages">
-    {% if products.has_previous %}
-      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in products.paginator.page_range %}
-      {% if products.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if products.has_next %}
-      <li><a href="?page={{ products.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
+<ul class="pagination" id="pages">
+  {% if products.has_previous %}
+  <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+  {% else %}
+  <li class="disabled"><span>&laquo;</span></li>
+  {% endif %}
+  {% for i in products.paginator.page_range %}
+  {% if products.number == i %}
+  <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+  {% else %}
+  <li><a href="?page={{ i }}">{{ i }}</a></li>
+  {% endif %}
+  {% endfor %}
+  {% if products.has_next %}
+  <li><a href="?page={{ products.next_page_number }}">&raquo;</a></li>
+  {% else %}
+  <li class="disabled"><span>&raquo;</span></li>
+  {% endif %}
+</ul>
 {% endif %}
-   <div class="container-fluid row mx-auto">
-        <!--To show the menu items obtained-->
-        {% for product in products %}
-        <div class="card col-sm-12 col-md-6 col-lg-4" id="productlist">
-<a href='{% url "details" id=product.id %}'>
-<img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/300x300/center/-/quality/lightest/">
-<p class="productName">  {{product.name}}<br></p>
-        <p>${{product.showPriceInDollars}}0</p>
-            <p>Quantity to order: </p>
-            <form method="post" action='{% url "add_to_cart" product.id %}' id="mainAdd">
-            {% csrf_token %}
-            <input type="number" class="form-control text-center border" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-              <div class="d-flex justify-content-center">
-              <button class="btn btn-link btn-sm js-btn-minus" type="button"><i class="fas fa-minus-circle"></i></button>
+<div class="container-fluid row mx-auto">
+  <!--To show the menu items obtained-->
+  {% for product in products %}
+  <div class="card col-sm-12 col-md-6 col-lg-4" id="productlist">
+    <a href='{% url "details" id=product.id %}'>
+    <img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/300x300/center/-/quality/lightest/">
+    <p class="productName">  {{product.name}}<br></p>
+    <p>${{product.showPriceInDollars}}0</p>
+    <p>Quantity to order: </p>
+    <form method="post" action='{% url "add_to_cart" product.id %}' id="mainAdd">
+      {% csrf_token %}
+      <input type="number" class="form-control text-center border" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-link btn-sm js-btn-minus" type="button"><i class="fas fa-minus-circle"></i></button>
         <button class="btn btn-link btn-sm js-btn-plus" type="button"><i class="fas fa-plus-circle"></i></button>
-        </div><br>
-          <button class="btn btn-info" type="submit" id="productButton">Add to Cart</button>
-                  </form>
-          </div>
-          
-        {% endfor %}
-       </div>
+      </div>
+      <br>
+      <button class="btn btn-info" type="submit" id="productButton">Add to Cart</button>
+    </form>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}
 {% block footer_js %}
 <script>
-var sitePlusMinus = function() {
-		$('.js-btn-minus').on('click', function(e){
-			e.preventDefault();
-			if ( $(this).closest('#mainAdd').find('.form-control').val() != 0  ) {
-				$(this).closest('#mainAdd').find('.form-control').val(parseInt($(this).closest('#mainAdd').find('.form-control').val()) - 1);
-			} else {
-				$(this).closest('#mainAdd').find('.form-control').val(parseInt(0));
-			}
-		});
-		$('.js-btn-plus').on('click', function(e){
-			e.preventDefault();
-			$(this).closest('#mainAdd').find('.form-control').val(parseInt($(this).closest('#mainAdd').find('.form-control').val()) + 1);
-		});
-	};
-	sitePlusMinus();
-	</script>
+  var sitePlusMinus = function() {
+  		$('.js-btn-minus').on('click', function(e){
+  			e.preventDefault();
+  			if ( $(this).closest('#mainAdd').find('.form-control').val() != 0  ) {
+  				$(this).closest('#mainAdd').find('.form-control').val(parseInt($(this).closest('#mainAdd').find('.form-control').val()) - 1);
+  			} else {
+  				$(this).closest('#mainAdd').find('.form-control').val(parseInt(0));
+  			}
+  		});
+  		$('.js-btn-plus').on('click', function(e){
+  			e.preventDefault();
+  			$(this).closest('#mainAdd').find('.form-control').val(parseInt($(this).closest('#mainAdd').find('.form-control').val()) + 1);
+  		});
+  	};
+  	sitePlusMinus();
+  	
+</script>
 {%endblock%}

@@ -3,58 +3,59 @@
 {% block page_title %}
 Product details
 {% endblock %}
-
 {% block content %}
-    <br><br><br>
-    <div class="container">
-        <h3>  {{product.name}} </h3>
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/600x600/center/-/quality/lightest/">
-            </div>
-            <div class="col-sm-12 col-md-6">
-             <p>Price: ${{product.showPriceInDollars}}0<br><br>
-
-         <div class="description">{{product.description}}</div><br><br>
-         <p>This product is in our
-        {% for t in product.tags.all %}
-            <span class="tag">{{ t.name }}</span>
-             {% endfor %} list, try it!</p>
-             <br><br>
-             <div class="input-group mb-3" style="max-width: 200px;">
-            <form method="post" action='{% url "add_to_cart" product.id %}'>
-            <p>Quantity to order: </p>
-            {% csrf_token %}
-            <input type="number" class="form-control text-center border" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-              <div class="d-flex justify-content-center" id="quantityB">
-              <button class="btn btn-link btn-sm js-btn-minus" type="button"><i class="fas fa-minus-circle"></i></button>
-        <button class="btn btn-link btn-sm js-btn-plus" type="button"><i class="fas fa-plus-circle"></i></button>
-        </div>
-            <br>
-          <button class="btn btn-info" type="submit" id="productButton">Add to Cart</button>
-                  </form>
-          </div>
-                <a href="{% url 'products' %}" class="btn btn-success" id="productButton">Back to main products page</a> 
-            </div>
-        </div>
+<br><br><br>
+<div class="container">
+  <h3>  {{product.name}} </h3>
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/600x600/center/-/quality/lightest/">
     </div>
+    <div class="col-sm-12 col-md-6">
+      <p>Price: ${{product.showPriceInDollars}}0<br><br>
+      <div class="description">{{product.description}}</div>
+      <br><br>
+      <p>This product is in our
+        {% for t in product.tags.all %}
+        <span class="tag">{{ t.name }}</span>
+        {% endfor %} list, try it!
+      </p>
+      <br><br>
+      <div class="input-group mb-3" style="max-width: 200px;">
+        <form method="post" action='{% url "add_to_cart" product.id %}'>
+          <p>Quantity to order: </p>
+          {% csrf_token %}
+          <input type="number" class="form-control text-center border" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+          <div class="d-flex justify-content-center" id="quantityB">
+            <button class="btn btn-link btn-sm js-btn-minus" type="button"><i class="fas fa-minus-circle"></i></button>
+            <button class="btn btn-link btn-sm js-btn-plus" type="button"><i class="fas fa-plus-circle"></i></button>
+          </div>
+          <br>
+          <button class="btn btn-info" type="submit" id="productButton">Add to Cart</button>
+        </form>
+      </div>
+      <a href="{% url 'products' %}" class="btn btn-success" id="productButton">Back to main products page</a> 
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block footer_js %}
 <script>
-var sitePlusMinus = function() {
-		$('.js-btn-minus').on('click', function(e){
-			e.preventDefault();
-			if ( $(this).closest('.input-group').find('.form-control').val() != 0  ) {
-				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
-			} else {
-				$(this).closest('.input-group').find('.form-control').val(parseInt(0));
-			}
-		});
-		$('.js-btn-plus').on('click', function(e){
-			e.preventDefault();
-			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
-		});
-	};
-	sitePlusMinus();
-	</script>
+  var sitePlusMinus = function() {
+  		$('.js-btn-minus').on('click', function(e){
+  			e.preventDefault();
+  			if ( $(this).closest('.input-group').find('.form-control').val() != 0  ) {
+  				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+  			} else {
+  				$(this).closest('.input-group').find('.form-control').val(parseInt(0));
+  			}
+  		});
+  		$('.js-btn-plus').on('click', function(e){
+  			e.preventDefault();
+  			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+  		});
+  	};
+  	sitePlusMinus();
+  	
+</script>
 {%endblock%}
