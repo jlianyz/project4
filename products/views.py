@@ -3,21 +3,27 @@ from .models import Product
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
+
+
 def home(request):
     return render(request, 'index.html')
-    
+
+
 def about(request):
     return render(request, 'about.html')
-    
+
+
 def bakers(request):
     return render(request, 'bakers.html')
-    
+
+
 def contact(request):
     return render(request, 'contact.html')
-    
+
+
 def product_list(request):
-    products = Product.objects.all();
-    
+    products = Product.objects.all()
+
     page = request.GET.get('page', 1)
 
     paginator = Paginator(products, 9)
@@ -28,22 +34,25 @@ def product_list(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    return render(request, 'product_list.html',{
-        'products':products
+    return render(request, 'product_list.html', {
+        'products': products
     })
-    
+
+
 def search_products(request):
-    product=Product.objects.filter(name__icontains=request.GET['query'])
-    return render(request, "product_list.html", {'products':product})
-    
+    product = Product.objects.filter(name__icontains=request.GET['query'])
+    return render(request, "product_list.html", {'products': product})
+
+
 def product_details(request, id):
     product = get_object_or_404(Product, pk=id)
     return render(request, 'product_details.html', {
         'product': product
     })
 
+
 def filter_products(request, category):
-    
+
     if category == "Cake pops":
         product_category = Product.objects.filter(category='Cake pops')
     elif category == "Chocolates":
@@ -61,8 +70,6 @@ def filter_products(request, category):
     elif category == "Tarts":
         product_category = Product.objects.filter(category='Tarts')
 
-        
-    return render(request, "product_list.html",{
+    return render(request, "product_list.html", {
         'products': product_category
     })
-

@@ -8,9 +8,11 @@ from .models import Charge, Transaction, LineItem
 from products.models import Product
 import stripe
 
+
 def success(request):
     return render(request, 'success.html')
-    
+
+
 def calculate_cart_cost(request):
     cart = request.session.get('cart', {})
     amount = 0
@@ -18,20 +20,22 @@ def calculate_cart_cost(request):
         product = get_object_or_404(Product, pk=id)
         amount += quantity * product.price
         print(amount)
-        
+
     return amount
+
 
 def checkout(request):
     all_cart_products = CartProduct.objects.filter(owner=request.user)
     print (len(all_cart_products))
     total_cost = calculate_cart_cost(request)
     return render(request, 'checkout.html', {
-        'total_cost':total_cost/100
+        'total_cost': total_cost / 100
     })
+
 
 def charge(request):
     amount = calculate_cart_cost(request)
-    
+
     if request.method == 'GET':
         transaction = Transaction()
         transaction.owner = request.user
@@ -39,7 +43,7 @@ def charge(request):
         transaction.status = "pending"
         transaction.date = timezone.now()
         transaction.save()
-        
+
         all_cart_products = CartProduct.objects.filter(owner=request.user)
         for cart_product in all_cart_products:
             lineItem = LineItem()
@@ -48,72 +52,68 @@ def charge(request):
             lineItem.name = cart_product.product.name
             lineItem.cost = cart_product.product.price
             lineItem.save()
-            
-            
-        
+
         order_form = OrderForm()
         payment_form = PaymentForm()
         return render(request, 'charge.html', {
-            'order_form' : order_form,
-            'payment_form' : payment_form,
-            'amount' : amount,
-            'transaction' : transaction,
+            'order_form': order_form,
+            'payment_form': payment_form,
+            'amount': amount,
+            'transaction': transaction,
             'publishable': settings.STRIPE_PUBLISHABLE_KEY
         })
     else:
-        
+
         transaction_id = request.POST['transaction_id']
         transaction = Transaction.objects.get(pk=transaction_id)
         if transaction.status != 'pending':
-             return HttpResponse (" Transaction has expired, please try again")
-        
+            return HttpResponse(" Transaction has expired, please try again")
+
         stripeToken = request.POST['stripe_id']
-        
+
         # set the secret key for the Stripe API
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        
+
         order_form = OrderForm(request.POST)
         payment_form = PaymentForm(request.POST)
-        
+
         if order_form.is_valid() and payment_form.is_valid():
             try:
                 customer = stripe.Charge.create(
-                    amount= int(request.POST['amount']),
+                    amount=int(request.POST['amount']),
                     currency='usd',
                     description='Payment',
                     card=stripeToken
-                    )
-                    
+                )
+
                 if customer.paid:
-                    
+
                     order = order_form.save(commit=False)
-                    order.date=timezone.now()
+                    order.date = timezone.now()
                     order.save()
-                    
-                   
-                    
-                    transaction.status ='approved'
+
+                    transaction.status = 'approved'
                     transaction.save()
-                    
-                    #update stock quantity
+
+                    # update stock quantity
                     del request.session['cart']
                     return redirect(reverse('success'))
                 else:
                     messages.error(request, "Your card has been declined")
             except stripe.error.CardError:
-                    messages.error(request, "Your card was declined!")
-            
+                messages.error(request, "Your card was declined!")
+
         else:
-             return render(request, 'charge.html', {
-            'order_form' : order_form,
-            'payment_form' : payment_form,
-            'amount' : amount,
+            return render(request, 'charge.html', {
+                'order_form': order_form,
+                'payment_form': payment_form,
+                'amount': amount,
+                'publishable': settings.STRIPE_PUBLISHABLE_KEY
+            })
+
+        return render(request, 'charge.html', {
+            'order_form': order_form,
+            'payment_form': payment_form,
+            'amount': amount,
             'publishable': settings.STRIPE_PUBLISHABLE_KEY
         })
-        
-        return render(request, 'charge.html', {
-            'order_form' : order_form,
-            'payment_form' : payment_form,
-            'amount' : amount,
-            'publishable': settings.STRIPE_PUBLISHABLE_KEY
-            })

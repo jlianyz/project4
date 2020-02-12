@@ -6,7 +6,7 @@ a:link {
 }
 /* base html css */
 .navbar {
-  background-color:white;
+  background-color:	rgba(255,192,203, 0.4);
 }
 .navbar-brand img,.toggler img  {
   height:70px;
@@ -85,14 +85,12 @@ h3 {
 #aboutright, #contactright {
   padding:20px 40px 0;
 }
+
 .desktop {
   display:none;
 }
 @media only screen and (max-width: 768px) { 
-  .navbar-brand img{
-    display:none;
-  }
-    .carousel-item img {
+  .carousel-item img {
   object-fit:cover;
     height:100vh;
   }
@@ -106,6 +104,11 @@ h3 {
     padding:0px 10px;
   }
   .mobile {
+    display:none;
+  }
+}
+@media only screen and (max-width: 992px) { 
+  .navbar-brand img{
     display:none;
   }
 }
@@ -126,7 +129,7 @@ h3 {
   text-decoration:none;
   color:#8B0000;
 }
-#paymentButton {
+#paymentButton, .csrfForm {
   margin-left:20px;
 }
 #baker {
@@ -183,7 +186,7 @@ h3 {
    display: inline;
 }
 
-.pagination a, .pagination li active {
+.pagination a, .pagination li:active {
   color: purple;
   font-family:'Alata', sans-serif;
   float: left;

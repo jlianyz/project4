@@ -8,8 +8,10 @@ Update your details
 {% block content %}
 <br><br><br>
 <h1>Your account details</h1>
+<div class="csrfForm">
     <form method='POST' action="" enctype="multipart/form-data" id="updateForm">
          {% csrf_token %}
          {% crispy update_details_form %}
     </form>
+    </div>
 {% endblock %}

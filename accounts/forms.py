@@ -12,7 +12,8 @@ class UserLoginForm(forms.Form):
     """Form to login user"""
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
-    
+
+
 class UserRegistrationForm(UserCreationForm):
     """Form used to register a new user"""
 
@@ -28,16 +29,22 @@ class UserRegistrationForm(UserCreationForm):
     last_name = forms.CharField(
         label="Last Name",
         widget=forms.TextInput)
-        
+
     class Meta:
         model = MyUser
-        fields = ['first_name', 'last_name', 'email','username', 'password1', 'password2']
-        
+        fields = [
+            'first_name',
+            'last_name',
+            'email',
+            'username',
+            'password1',
+            'password2']
+
     def clean_email(self):
         User = get_user_model()
-        email = self.cleaned_data.get('email') #1
+        email = self.cleaned_data.get('email')  # 1
         username = self.cleaned_data.get('username')
-        #2 check if the email is unique, using the Django ORM
+        # 2 check if the email is unique, using the Django ORM
         if User.objects.filter(email=email):
             raise forms.ValidationError('Your email address must be unique')
         return email
@@ -48,12 +55,12 @@ class UserRegistrationForm(UserCreationForm):
 
         if not password1 or not password2:
             raise ValidationError("Please confirm your password")
-        
+
         if password1 != password2:
             raise ValidationError("Passwords must match")
-        
+
         return password2
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -74,12 +81,13 @@ class UserRegistrationForm(UserCreationForm):
                 Column('password2', css_class='form-group col-md-6 mb-0'),
                 css_class='form-row'
             ),
-            
+
             Submit('submit', 'Register')
-          )
+        )
+
 
 class UpdateDetailsForm(UserRegistrationForm):
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].label = 'First name'
@@ -108,12 +116,12 @@ class UpdateDetailsForm(UserRegistrationForm):
 
             Submit('submit', 'Update details')
         )
-      
+
     def clean_email(self):
         User = get_user_model()
-        email = self.cleaned_data.get('email') #1
+        email = self.cleaned_data.get('email')  # 1
         username = self.cleaned_data.get('username')
-        #2 check if the email is unique, using the Django ORM
+        # 2 check if the email is unique, using the Django ORM
         user_with_that_email = User.objects.filter(email=email)
         print(user_with_that_email)
         print(self.instance)

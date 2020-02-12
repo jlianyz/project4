@@ -9,15 +9,18 @@ from django.template.context_processors import csrf
 
 # Create your views here.
 
+
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have successfully been logged out")
     return redirect(reverse('index'))
 
+
 def login(request):
     """Returns the login page"""
     if request.method == 'POST':
-        login_form = UserLoginForm(request.POST) # populate the form from what the user has keyed in
+        # populate the form from what the user has keyed in
+        login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
             # attempt to check the username and password is valid
             user = auth.authenticate(username=request.POST['username'],
@@ -30,14 +33,16 @@ def login(request):
             else:
                 login_form.add_error(None, "Invalid username or password")
                 return render(request, 'user_login.html', {
-                  'form':login_form
+                    'form': login_form
                 })
 
     else:
         login_form = UserLoginForm()
         return render(request, 'user_login.html', {
-            'form':login_form
+            'form': login_form
         })
+
+
 def register(request):
     User = get_user_model()
     if request.method == "POST":
@@ -55,7 +60,7 @@ def register(request):
                 messages.error(request, "You failed to register")
             return redirect(reverse('index'))
         else:
-            return render(request, "register.html",{
+            return render(request, "register.html", {
                 'form': form
             })
     else:
@@ -63,23 +68,24 @@ def register(request):
         return render(request, "register.html", {
             'form': register_form
         })
-        
+
+
 @login_required
 def update_details(request):
     logged_in_user = MyUser.objects.all().get(pk=request.user.id)
-    
+
     if request.method == "POST":
         # for update
-        update_details_form = UpdateDetailsForm(request.POST, instance=logged_in_user)
+        update_details_form = UpdateDetailsForm(
+            request.POST, instance=logged_in_user)
         if update_details_form.is_valid():
             update_details_form.save()
-            messages.success(request, "Your profile has been updated! Please log in again")
-  
+            messages.success(
+                request, "Your profile has been updated! Please log in again")
+
     else:
         update_details_form = UpdateDetailsForm(instance=logged_in_user)
-    
-    return render(request, 'update_details.html',{
-        'update_details_form':update_details_form
+
+    return render(request, 'update_details.html', {
+        'update_details_form': update_details_form
     })
-    
-    
