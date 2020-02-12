@@ -126,6 +126,9 @@ h3 {
   text-decoration:none;
   color:#8B0000;
 }
+#paymentButton {
+  margin-left:20px;
+}
 #baker {
   padding-top:15px;
   text-align:center;
@@ -175,15 +178,12 @@ h3 {
 #contactform {
   font-family: 'Alata', sans-serif;
 }
-.pagination {
-  display: inline-block;
-}
 
 .pagination ul li {
    display: inline;
 }
 
-.pagination a {
+.pagination a, .pagination li active {
   color: purple;
   font-family:'Alata', sans-serif;
   float: left;

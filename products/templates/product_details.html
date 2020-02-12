@@ -25,7 +25,7 @@ Product details
             <form method="post" action='{% url "add_to_cart" product.id %}'>
             <p>Quantity to order: </p>
             {% csrf_token %}
-            <input type="number" class="form-control text-center border mr-0" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            <input type="number" class="form-control text-center border" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
               <div class="d-flex justify-content-center" id="quantityB">
               <button class="btn btn-link btn-sm js-btn-minus" type="button"><i class="fas fa-minus-circle"></i></button>
         <button class="btn btn-link btn-sm js-btn-plus" type="button"><i class="fas fa-plus-circle"></i></button>
