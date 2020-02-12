@@ -36,36 +36,11 @@ Our products
     </div>
 </div>
 </div>
-   <div class="container-fluid row mx-auto">
-        <!--To show the menu items obtained-->
-        {% for product in products %}
-        <div class="card col-sm-12 col-md-6 col-lg-4" id="productlist">
-<a href='{% url "details" id=product.id %}'>
-<img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/300x300/center/-/quality/lightest/">
-<p class="productName">  {{product.name}}<br></p>
-        <p>${{product.showPriceInDollars}}0</p>
-            <p>Quantity: </p>
-            <form method="post" action='{% url "add_to_cart" product.id %}' id="mainAdd"  class="input-group mb-3">
-            {% csrf_token %}
-            <input type="number" class="form-control text-center border mr-0" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-              <div class="d-flex justify-content-center" id="quantityB">
-              <button class="btn btn-link btn-sm js-btn-minus" type="button"><i class="fas fa-minus-circle"></i></button>
-        <button class="btn btn-link btn-sm js-btn-plus" type="button"><i class="fas fa-plus-circle"></i></button>
-        </div>
-            <br><br>
-          <button class="btn btn-info" type="submit" id="productButton">Add to Cart</button>
-                  </form>
-          </div>
-          
-        {% endfor %}
-
-   
-    </div>
-<div id="pages">
+<!--paginator-->
 {% if products.has_other_pages %}
-  <ul class="pagination">
+  <ul class="pagination" id="pages">
     {% if products.has_previous %}
-      <li><a href="?page={{ products.previous_page_number }}">&laquo;</a></li>
+      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
     {% else %}
       <li class="disabled"><span>&laquo;</span></li>
     {% endif %}
@@ -83,21 +58,44 @@ Our products
     {% endif %}
   </ul>
 {% endif %}
+   <div class="container-fluid row mx-auto">
+        <!--To show the menu items obtained-->
+        {% for product in products %}
+        <div class="card col-sm-12 col-md-6 col-lg-4" id="productlist">
+<a href='{% url "details" id=product.id %}'>
+<img class="img-fluid" src="{{product.photo.cdn_url}}-/scale_crop/300x300/center/-/quality/lightest/">
+<p class="productName">  {{product.name}}<br></p>
+        <p>${{product.showPriceInDollars}}0</p>
+            <p>Quantity to order: </p>
+            <form method="post" action='{% url "add_to_cart" product.id %}' id="mainAdd">
+            {% csrf_token %}
+            <input type="number" class="form-control text-center border mr-0" value="1" name="quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <div class="d-flex justify-content-center" id="quantityB">
+              <button class="btn btn-link btn-sm js-btn-minus" type="button"><i class="fas fa-minus-circle"></i></button>
+        <button class="btn btn-link btn-sm js-btn-plus" type="button"><i class="fas fa-plus-circle"></i></button>
+        </div>
+            <br><br>
+          <button class="btn btn-info" type="submit" id="productButton">Add to Cart</button>
+                  </form>
+          </div>
+          
+        {% endfor %}
+       </div>
 {% endblock %}
 {% block footer_js %}
 <script>
 var sitePlusMinus = function() {
 		$('.js-btn-minus').on('click', function(e){
 			e.preventDefault();
-			if ( $(this).closest('.input-group').find('.form-control').val() != 0  ) {
-				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+			if ( $(this).closest('#mainAdd').find('.form-control').val() != 0  ) {
+				$(this).closest('#mainAdd').find('.form-control').val(parseInt($(this).closest('#mainAdd').find('.form-control').val()) - 1);
 			} else {
-				$(this).closest('.input-group').find('.form-control').val(parseInt(0));
+				$(this).closest('#mainAdd').find('.form-control').val(parseInt(0));
 			}
 		});
 		$('.js-btn-plus').on('click', function(e){
 			e.preventDefault();
-			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+			$(this).closest('#mainAdd').find('.form-control').val(parseInt($(this).closest('#mainAdd').find('.form-control').val()) + 1);
 		});
 	};
 	sitePlusMinus();
