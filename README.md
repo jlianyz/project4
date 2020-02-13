@@ -1,7 +1,7 @@
 # The Sweet Tooth
 ## Full Stack Frameworks with Django Milestone Project 
 ### Introduction
-The project consists of an ecommerce site for an online pastry shop called The Sweet Tooth. Visitors to the site are able to read up about the shop’s background, contact the shop, view and search for the pastries available for purchase. They have to create a user account and log in to make the purchases. The site can be found here, and the information is structured into:
+The project consists of an ecommerce site for an online pastry shop called The Sweet Tooth. Visitors to the site are able to read up about the shop’s background, contact the shop, view and search for the pastries available for purchase. They have to create a user account and log in to make the purchases. The site can be found [here](https://jlyzproject4.herokuapp.com/products/), and the information is structured into:
 
 **1. About us page**
   * Shop background
@@ -79,17 +79,17 @@ The project consists of an ecommerce site for an online pastry shop called The S
 * The colour scheme is pastel and playful, with a focus on pinks and purples. This is suitable for a pastry shop. All text is easily read against the background
 * Site is not overcrowded – sufficient negative space to ensure design looks balanced and not cluttered
 * Use of bootstrap grid layout throughout so that divs are all evenly spaced
+* Landing page images are shown in a carousel, with the option for users to click to speed up the rate at which images change
+* Fixed attachment baking related images are shown in section headers for static pages, while still having the text clearly visible as opacity of background image is reduced
+
 
 #### Desktop and tablet version
-* Fixed attachment baking related images are shown in section headers for static pages, while still having the text clearly visible as opacity of background image is reduced
 * Information is presented in 3-column rows. Pagination is used to ensure that pages are not too long. Sufficient margins are added between columns to keep layout clean and neat
-* Landing page images are shown in a carousel, with the option for users to click to speed up the rate at which images change.
-
+* 
 
 #### Mobile version
 * Single columns so that page is not overly cluttered
 * Navbar is mobile responsive
-* For section headers, the background is a color gradient instead of an image so that the page loads quicker. It is also difficult to find a suitable background image for jumbotrons this small.
 
 
 ### Technologies used
