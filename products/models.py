@@ -15,7 +15,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255, blank=False)
     product_id = models.CharField(max_length=100, blank=False)
     description = models.TextField(blank=False)
-    price = models.IntegerField(blank=False)
+    price = models.IntegerField(blank=False) # cents for stripe to work
     quantity = models.PositiveIntegerField(blank=False, default=0)
     category = models.CharField(
         max_length=100,

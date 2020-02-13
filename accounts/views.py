@@ -7,13 +7,10 @@ from django.shortcuts import render, HttpResponse, redirect, reverse, get_object
 from .forms import UserLoginForm, UserRegistrationForm, UpdateDetailsForm
 from django.template.context_processors import csrf
 
-# Create your views here.
-
-
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have successfully been logged out")
-    return redirect(reverse('index'))
+    return redirect(reverse('index')) # go back to home page
 
 
 def login(request):
@@ -55,7 +52,7 @@ def register(request):
             if user:
                 # actually log the user in
                 auth.login(user=user, request=request)
-                messages.success(request, "You have registered successful")
+                messages.success(request, "You have registered successfully")
             else:
                 messages.error(request, "You failed to register")
             return redirect(reverse('index'))
@@ -73,7 +70,7 @@ def register(request):
 @login_required
 def update_details(request):
     logged_in_user = MyUser.objects.all().get(pk=request.user.id)
-
+# get data from the update details form
     if request.method == "POST":
         # for update
         update_details_form = UpdateDetailsForm(

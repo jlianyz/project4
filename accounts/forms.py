@@ -60,7 +60,7 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Passwords must match")
 
         return password2
-
+# to style the csrf form individual sections
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -87,7 +87,7 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UpdateDetailsForm(UserRegistrationForm):
-
+ # pulls fields from the registration form
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].label = 'First name'
@@ -121,7 +121,7 @@ class UpdateDetailsForm(UserRegistrationForm):
         User = get_user_model()
         email = self.cleaned_data.get('email')  # 1
         username = self.cleaned_data.get('username')
-        # 2 check if the email is unique, using the Django ORM
+        # to allow same email to be submitted
         user_with_that_email = User.objects.filter(email=email)
         print(user_with_that_email)
         print(self.instance)

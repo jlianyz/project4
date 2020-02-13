@@ -12,7 +12,7 @@ import stripe
 def success(request):
     return render(request, 'success.html')
 
-
+# store cart data in database
 def calculate_cart_cost(request):
     cart = request.session.get('cart', {})
     amount = 0
@@ -26,10 +26,9 @@ def calculate_cart_cost(request):
 
 def checkout(request):
     all_cart_products = CartProduct.objects.filter(owner=request.user)
-    print (len(all_cart_products))
     total_cost = calculate_cart_cost(request)
     return render(request, 'checkout.html', {
-        'total_cost': total_cost / 100
+        'total_cost': total_cost / 100 # as stripe can only handle integers
     })
 
 
@@ -94,9 +93,7 @@ def charge(request):
 
                     transaction.status = 'approved'
                     transaction.save()
-
-                    # update stock quantity
-                    del request.session['cart']
+                    del request.session['cart'] #empty cart again
                     return redirect(reverse('success'))
                 else:
                     messages.error(request, "Your card has been declined")

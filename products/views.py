@@ -2,8 +2,6 @@ from django.shortcuts import render, HttpResponse, redirect, reverse, get_object
 from .models import Product
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-# Create your views here.
-
 
 def home(request):
     return render(request, 'index.html')
@@ -38,7 +36,7 @@ def product_list(request):
         'products': products
     })
 
-
+# allow search by typing any part of the word
 def search_products(request):
     product = Product.objects.filter(name__icontains=request.GET['query'])
     return render(request, "product_list.html", {'products': product})
