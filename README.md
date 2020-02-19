@@ -174,6 +174,8 @@ Automated testing includes:
 * [Auto Pep 8](https://pypi.org/project/autopep8/) to ensure Python formatting is correct
 * [HTML and CSS formatter](https://codebeautify.org/htmlviewer/) to ensure that HTML and CSS formatting is correct
 
+##### Known errors
+For IE, the flip card in the bakers section does not work.
 ***
 
 ### Deployment
@@ -211,7 +213,7 @@ To deploy the page locally:
 ### Credits
 **Images**
 
-The images were taken from [Pexels](https://www.pexels.com/), [Unsplash](https://unsplash.com/) and a friend's photography site (http://www.danielshechter.com/) 
+The images were taken from [Pexels](https://www.pexels.com/), [Unsplash](https://unsplash.com/) and a friend's photography [site](http://www.danielshechter.com/) 
 
 **Text**
 
@@ -220,10 +222,6 @@ The text was adapted from [Edith Patisserie](https://www.edithpatisserie.com/)
 **Typography**
 
 The fonts were taken from [Google fonts](https://fonts.google.com/)
-
-**Quantity adder**
-
-I adapted the code from [our teaching assistant's github](https://github.com/Code-Institute-Submissions/TGC-CI-Project4-V2/blob/master/products/templates/shop-single.html)
 
 **Logo and favicon generator**
 
