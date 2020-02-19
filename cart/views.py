@@ -8,12 +8,7 @@ from .models import CartProduct
 def view_cart(request):
     if request.user:
        # reminder: request.user is the currently logged in user
-       # cart = CartProduct.objects.filter(owner=request.user)
-        return render(request, 'view_cart.html', {
-            # 'cart':cart
-        })
-    # else:
-    #    return(render('template')
+        return render(request, 'view_cart.html')
 
 
 def add_to_cart(request, id):
