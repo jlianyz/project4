@@ -84,8 +84,8 @@ The project consists of an ecommerce site for an online pastry shop called The S
 
 
 #### Desktop and tablet version
-* Information is presented in 3-column rows. Pagination is used to ensure that pages are not too long. Sufficient margins are added between columns to keep layout clean and neat
-* 
+* Information is presented in 3-column rows. Pagination is used to ensure that pages are not too long. 
+* Sufficient margins are added between columns to keep layout clean and neat
 
 #### Mobile version
 * Single columns so that page is not overly cluttered
